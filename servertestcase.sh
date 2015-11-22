@@ -13,8 +13,6 @@ export PROCNANNYSERVERINFO="./serverinfo"
 
 
 
-sleep 5
-./procnanny.client ud16 9583 &
 
 
 

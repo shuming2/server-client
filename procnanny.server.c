@@ -66,7 +66,7 @@ int main(int argc, char *argv[]) {
       FD_SET(clients[j], &fds);
     }
     if (select(maxfd+1, &fds, NULL, NULL, &timeout) == -1) {
-      //sendError(11);
+      sendError(11);
     }
     for (i = 0; i <= maxfd; i++) {
       if (!FD_ISSET(i, &fds)) continue;

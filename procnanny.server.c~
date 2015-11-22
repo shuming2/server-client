@@ -67,40 +67,39 @@ int main(int argc, char *argv[]) {
     }
     if (select(maxfd+1, &fds, NULL, NULL, &timeout) == -1) {
       //sendError(11);
-
+    }
     for (i = 0; i <= maxfd; i++) {
       if (!FD_ISSET(i, &fds)) continue;
       if (i == sock) { // accept a new connection
-	client = accept(sock, (struct sockaddr *) &from, &fromlength);
-	if (client < 0) sendError(8);
+        client = accept(sock, (struct sockaddr *) &from, &fromlength);
+        if (client < 0) sendError(8);
 
-	// send the configuration to client
-	write(client, configMessage, 256);
+        // send the configuration to client
+        write(client, configMessage, 256);
 
-	// add client to select watcher
-	if (client > maxfd) maxfd = client;
+        // add client to select watcher
+        if (client > maxfd) maxfd = client;
 
-	// save the client data
-	clients[numofClient] = client;
-	numofClient++;
+        // save the client data
+        clients[numofClient] = client;
+        numofClient++;
       }
       else { // read messages sent from clients
 
-	char *buffer = (char *) malloc(256);
-	memset(buffer, 0, 256);
+        char *buffer = (char *) malloc(256);
+        memset(buffer, 0, 256);
 
-	// read the log message
-	read(client, buffer, 256);
+        // read the log message
+        read(client, buffer, 256);
 
-	printf("read message =>%s\n",buffer);
-	// check if it is a kill message
-	if (strstr(buffer, "killed after") != NULL) killcount += 1;
+        printf("read message =>%s\n", buffer);
+        // check if it is a kill message
+        if (strstr(buffer, "killed after") != NULL) killcount += 1;
 
-	// write to the log file
-	writeToLogFile(buffer);
+        // write to the log file
+        writeToLogFile(buffer);
       }
     }
-    
   }
 }
 
