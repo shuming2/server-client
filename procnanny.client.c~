@@ -175,7 +175,7 @@ void clearClose() {
   int i;
 
   // free memory
-  for (i = 0; i < 128; i++) free(records.recordarr[i].name);
+  for (i = 0; i < records.num; i++) free(records.recordarr[i].name);
   free(records.recordarr);
   free(message);
   free(pname);

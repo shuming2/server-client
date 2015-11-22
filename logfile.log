@@ -1,0 +1,12 @@
+[Sun Nov 22 16:03:08 MST 2015]  procnanny server: PID 26044 on node ud16, port 9583
+
+[Sun Nov 22 16:03:13 MST 2015]  Info: No 'test' processes found.
+[Sun Nov 22 16:03:13 MST 2015]  Info: No 'a.out' processes found.
+[Sun Nov 22 16:03:13 MST 2015]  Info: Initializing monitoring of process 'loop' (PID 26043).
+[Sun Nov 22 16:03:13 MST 2015]  Info: Initializing monitoring of process 'loop' (PID 26042).
+[Sun Nov 22 16:03:13 MST 2015]  Info: Initializing monitoring of process 'loop' (PID 26011).
+[Sun Nov 22 16:03:13 MST 2015]  Info: Initializing monitoring of process 'loop' (PID 26010).
+[Sun Nov 22 16:03:18 MST 2015]  Action: PID 26043 (loop) killed after exceeding 5 seconds.
+[Sun Nov 22 16:03:18 MST 2015]  Action: PID 26042 (loop) killed after exceeding 5 seconds.
+[Sun Nov 22 16:03:18 MST 2015]  Action: PID 26011 (loop) killed after exceeding 5 seconds.
+[Sun Nov 22 16:03:18 MST 2015]  Action: PID 26010 (loop) killed after exceeding 5 seconds.
