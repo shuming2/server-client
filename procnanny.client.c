@@ -44,11 +44,9 @@ int main(int argc, char *argv[]) {
   message = (char*) malloc(128);
   getmessage = (char*) malloc(128);
   pname = (char*) malloc(128);
-  records.recordarr = malloc(128*(128+4));
-  int i;
-  for (i = 0; i < 128; i++) {
-      records.recordarr[i].name = (char*) malloc(128);
-  }
+  records.recordarr = malloc(128*(256+4));
+  records.num = 0;
+
 
   // create pipes
   puts("create pipes");
@@ -136,6 +134,8 @@ void receiveMessage() {
           clearClose();
           free(buffer);
         } else {
+
+          for (i = 0; i < records.num; i++) free(records.recordarr[i].name);
           updateConfiguration(buffer);
           monitorProcess(sendPipe);
         }
@@ -175,7 +175,7 @@ void clearClose() {
   int i;
 
   // free memory
-  for (i = 0; i < 128; i++) free(records.recordarr[i].name);
+  for (i = 0; i < records.num; i++) free(records.recordarr[i].name);
   free(records.recordarr);
   free(message);
   free(pname);
@@ -198,6 +198,7 @@ Records updateConfiguration(char *buffer) {
   for (j = 0; *(buffer+j); j++){
     if (*(buffer+j) == '(') {
       sscanf(buffer+j, "(%s %d)", name, &runtime);
+      records.recordarr[i].name = (char *) malloc(255);
       strcpy(records.recordarr[i].name, name);
       records.recordarr[i].time = runtime;
       i++;
