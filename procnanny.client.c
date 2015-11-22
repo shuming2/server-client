@@ -29,18 +29,15 @@ int main(int argc, char *argv[]) {
   sscanf(argv[2], "%d", &my_port);
 
   // shared data
-  puts("shared data");
   PidList pl;
   pidmonitored = &pl;
   pidmonitored = mmap(NULL, sizeof(*pidmonitored), PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0);
   (*pidmonitored).numpid = 0;
 
   // kill previous procnanny.client
-  puts("kill previous procnanny.client");
   killPreviousClient();
 
   // initialize pointers
-  puts("initialize pointers");
   message = (char*) malloc(128);
   getmessage = (char*) malloc(128);
   pname = (char*) malloc(128);
@@ -53,11 +50,9 @@ int main(int argc, char *argv[]) {
   if (pipe(sendPipe) == -1) sendError(5);
 
   // initialize the socket
-  puts("initialize the socket");
   initializeSocket(argv[1], my_port);
 
   // loop for check message received
-  puts("loop for check message received");
   receiveMessage();
 
   return 1;
@@ -129,8 +124,8 @@ void receiveMessage() {
         char *buffer = (char*) malloc(256);
 
         read(sock, buffer, 256);
-
-        if (strcmp(buffer, "clearclose")==0) {
+        puts(buffer);
+        if (strcmp(buffer, "clearclose") == 0) {
           clearClose();
           free(buffer);
         } else {

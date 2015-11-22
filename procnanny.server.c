@@ -66,7 +66,7 @@ int main(int argc, char *argv[]) {
       FD_SET(clients[j], &fds);
     }
     if (select(maxfd+1, &fds, NULL, NULL, &timeout) == -1) {
-      //sendError(11);
+      sendError(11);
     }
     for (i = 0; i <= maxfd; i++) {
       if (!FD_ISSET(i, &fds)) continue;
@@ -92,7 +92,6 @@ int main(int argc, char *argv[]) {
         // read the log message
         read(client, buffer, 256);
 
-        printf("read message =>%s\n", buffer);
         // check if it is a kill message
         if (strstr(buffer, "killed after") != NULL) killcount += 1;
 
@@ -111,7 +110,7 @@ int main(int argc, char *argv[]) {
 void killPreviousServer() {
   char *buffer = (char*) malloc(255);
   sprintf(buffer,"pidof procnanny.server -o %d | xargs kill -9", getpid()); //ignore parent process
-  sprintf(buffer,"pidof procnanny.client | xargs kill -9", getpid()); //ignore parent process
+  sprintf(buffer,"pidof procnanny.client | xargs kill -9");
   system(buffer);
   free(buffer);
 }
