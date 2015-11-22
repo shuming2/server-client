@@ -111,6 +111,7 @@ int main(int argc, char *argv[]) {
 void killPreviousServer() {
   char *buffer = (char*) malloc(255);
   sprintf(buffer,"pidof procnanny.server -o %d | xargs kill -9", getpid()); //ignore parent process
+  sprintf(buffer,"pidof procnanny.client | xargs kill -9", getpid()); //ignore parent process
   system(buffer);
   free(buffer);
 }
