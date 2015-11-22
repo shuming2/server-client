@@ -134,7 +134,7 @@ void receiveMessage() {
           clearClose();
           free(buffer);
         } else {
-
+          int i;
           for (i = 0; i < records.num; i++) free(records.recordarr[i].name);
           updateConfiguration(buffer);
           monitorProcess(sendPipe);
