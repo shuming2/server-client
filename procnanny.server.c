@@ -11,24 +11,12 @@
 #include <sys/mman.h>
 #include <sys/wait.h>
 #include <sys/fcntl.h>
+#include <sys/errno.h>
 #include "procnanny.server.h"
 #include "memwatch.h"
 
 #define MY_PORT 9583
 
-
-void setSockNonBlock(int sock) {
-  int flags;
-  flags = fcntl(sock, F_GETFL, 0);
-  if (flags < 0) {
-    perror("fcntl(F_GETFL) failed");
-    exit(EXIT_FAILURE);
-  }
-  if (fcntl(sock, F_SETFL, flags | O_NONBLOCK) < 0) {
-    perror("fcntl(F_SETFL) failed");
-    exit(EXIT_FAILURE);
-  }
-}
 
 // shared data
 char *currentTime, *configPath, *configMessage;
@@ -85,6 +73,7 @@ int main(int argc, char *argv[]) {
     }
 
     if (select(maxfd + 1, &fds, NULL, NULL, &timeout) == -1) {
+      printf("system errno = %d\n",errno);
       sendError(11);
     }
     for (i = 0; i <= maxfd; i++) {
@@ -92,9 +81,6 @@ int main(int argc, char *argv[]) {
       if (i == sock) { // accept a new connection
         client = accept(sock, (struct sockaddr *) &from, &fromlength);
         if (client < 0) sendError(8);
-        ///////
-        setSockNonBlock(client);
-        ///////
 
         // send the configuration to client
         write(client, configMessage, 256);
