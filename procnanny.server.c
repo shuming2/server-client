@@ -19,8 +19,8 @@
 
 
 // shared data
-char *currentTime, *configPath, *configMessage;
-int clients[32] = {0}, numofClient = 0, sock, killcount, reread = 0;
+char *currentTime, *configPath, *configMessage, *nodename[256] = {0}, *nodeString;
+int clients[32] = {0}, numofClient = 0, sock, killcount, reread = 0, nodeno = 0;
 
 
 int main(int argc, char *argv[]) {
@@ -62,7 +62,7 @@ int main(int argc, char *argv[]) {
   int i, j, maxfd = sock;
 
   // set up signal mask
-  sigset_t sigmask, origin;
+  sigset_t sigmask;
   sigemptyset(&sigmask);
   sigaddset(&sigmask, SIGINT);
   sigaddset(&sigmask, SIGHUP);
@@ -78,8 +78,8 @@ int main(int argc, char *argv[]) {
       reread = 0;
     }
 
-    int value = pselect(maxfd + 1, &fds, NULL, NULL, &timeout, &sigmask);
-    if (value == -1) {
+    // block the signals: SIGINT, SIGHUP
+    if (pselect(maxfd + 1, &fds, NULL, NULL, &timeout, &sigmask) == -1) {
       printf("system errno = %d\n",errno);
       sendError(11);
     }
@@ -95,6 +95,7 @@ int main(int argc, char *argv[]) {
         // add client to select watcher
         if (client > maxfd) maxfd = client;
         FD_SET(client, &fds_full);
+
         // save the client data
         clients[numofClient] = client;
         numofClient++;
@@ -108,7 +109,14 @@ int main(int argc, char *argv[]) {
         read(client, buffer, 256);
 
         // check if it is a kill message
-        if (strstr(buffer, "killed after") != NULL) killcount += 1;
+        if (strstr(buffer, "killed after") != NULL) {
+          killcount += 1;
+        }
+
+        // Check the node name
+        checkNodeName(buffer);
+
+
 
         // write to the log file
         writeToLogFile(buffer);
@@ -266,13 +274,11 @@ void siginthandler(int signum) {
   int i;
 
   // send "clearclose" message to every client and close the connection
-  char *clearclose = (char*) malloc(255);
-  strcpy(clearclose, "clearclose");
+  char *clearclose = "clearclose";
   for (i = 0; i < numofClient; i++) {
     write(clients[i], clearclose, 256);
     close(clients[i]);
   }
-  free(clearclose);
 
   // kill each of its children
   killPreviousServer();
@@ -283,11 +289,12 @@ void siginthandler(int signum) {
 
   // output to shell and logfile
   char *buffer = (char*) malloc(255);
-  sprintf(buffer, "%s  Info: Caught SIGINT. Exiting cleanly. %d process(es) killed.", getCurrentTime(), killcount);
+  sprintf(buffer, "%s  Info: Caught SIGINT. Exiting cleanly. %d process(es) killed on node(s) %s.", getCurrentTime(), killcount, getNodeName());
   fprintf(stderr,"%s\n", buffer);
   writeToLogFile(buffer);
 
-  // free currentTime pointer
+  // free pointer
+  free(nodeString);
   free(currentTime);
   exit(0);
 }
@@ -316,4 +323,71 @@ void initializeMasterSocket() {
 
   // max number of clients connection
   listen (sock, 32);
+}
+
+void checkNodeName(char *buffer) {
+  char *str, *name = (char *) malloc(255);
+  int i, j, startpos, endpos;
+
+  // get node name from message
+  // no process message check
+  if ((str = strstr(buffer, "found on")) != NULL) {
+    startpos = (int) (buffer - str + 9);
+    endpos = (int) strlen(buffer) - 2;
+    j = 0;
+    for (i = startpos; i <= endpos; i++) {
+      name[j] = buffer[i];
+    }
+  }
+    // initialize message
+  else if ((str = strstr(buffer, "on node")) != NULL) {
+    startpos = (int) (buffer - str + 8);
+    endpos = (int) strlen(buffer) - 2;
+    j = 0;
+    for (i = startpos; i <= endpos; i++) {
+      name[j] = buffer[i];
+    }
+  }
+    // kill message
+  else if ((str = strstr(buffer, " killed after")) != NULL) {
+    endpos = (int) (buffer - str - 1);
+    for (i = 1; endpos - i > 0; i++) {
+      if (buffer[endpos - i] == ' ') {
+        startpos = endpos - i + 1;
+        break;
+      }
+    }
+    j = 0;
+    for (i = startpos; i <= endpos; i++) {
+      name[j] = buffer[i];
+    }
+  }
+
+  // check if the node name is in the node name list
+  int new = 1;
+  for (i = 0; i < nodeno; i++) {
+    if (strcmp(nodename[i], name) == 0) {
+      new = 0;
+      break;
+    }
+  }
+
+  if (new == 1) {
+    nodename[nodeno] = malloc(255);
+    strcpy(nodename[nodeno], name);
+    nodeno += 1;
+  }
+  free(name);
+}
+
+void getNodeName() {
+  nodeString = (char*) malloc(255);
+  int i;
+  for (i = 0; i < nodeno; i++) {
+    strcpy(nodeString, nodename[i]);
+    free(nodename[i]);
+    if (i != nodeno) {
+      sprintf(nodeString, "%s, ", nodeString);
+    }
+  }
 }

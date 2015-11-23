@@ -19,6 +19,7 @@ int childnum = 0;
 char *message, *pname, *getmessage;
 int sock, sendPipe[2];
 char *currentTime;
+char node[255];
 
 int main(int argc, char *argv[]) {
   currentTime = (char*) malloc(255);
@@ -27,6 +28,7 @@ int main(int argc, char *argv[]) {
   if (argc != 3) sendError(1);
   int my_port;
   sscanf(argv[2], "%d", &my_port);
+  gethostname(node, 255); // get node name
 
   // shared data
   PidList pl;
@@ -71,7 +73,7 @@ void monitorProcess (int sendPipe[2]) {
     //No process found
     if (no == 0) {
       char *buffer = malloc(255);
-      sprintf(buffer, "%s  Info: No '%s' processes found.", getCurrentTime(), records.recordarr[i].name);
+      sprintf(buffer, "%s  Info: No '%s' processes found on %s.", getCurrentTime(), records.recordarr[i].name, node);
       write(sock, buffer, 256);
       free(buffer);
     }
@@ -255,12 +257,12 @@ PidList pidof(char *name) {
  */
 void childExecution(char *pname, int runtime, int pid) {
   char *buffer = (char*) malloc(255);
-  sprintf(buffer, "%s  Info: Initializing monitoring of process '%s' (PID %d).", getCurrentTime(), pname, pid);
+  sprintf(buffer, "%s  Info: Initializing monitoring of process '%s' (PID %d) on node %s.", getCurrentTime(), pname, pid, node);
   write(sock, buffer, 256);;
 
   sleep(runtime);  //sleep time
   if (kill(pid, SIGKILL) == 0) {  //check if process monitored is still alive
-    sprintf(buffer, "%s  Action: PID %d (%s) killed after exceeding %d seconds.", getCurrentTime(), pid, pname, runtime);
+    sprintf(buffer, "%s  Action: PID %d (%s) killed on %s after exceeding %d seconds.", getCurrentTime(), pid, pname, node, runtime);
     write(sock, buffer, 256);;
   }
   free(buffer);
