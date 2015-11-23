@@ -31,6 +31,7 @@ int main(int argc, char *argv[]) {
   killPreviousServer();
 
   // initialize pointers;
+  nodeString = (char*) malloc(255);
   configMessage = (char*) malloc(255);
   currentTime = (char*) malloc(255);
   configPath = (char*) malloc(255);
@@ -289,8 +290,7 @@ void siginthandler(int signum) {
 
   // output to shell and logfile
   char *buffer = (char*) malloc(255);
-  getNodeName();
-  sprintf(buffer, "%s  Info: Caught SIGINT. Exiting cleanly. %d process(es) killed on node(s) %s.", getCurrentTime(), killcount, nodeString);
+  sprintf(buffer, "%s  Info: Caught SIGINT. Exiting cleanly. %d process(es) killed on node(s) %s.", getCurrentTime(), killcount, getNodeName());
   fprintf(stderr,"%s\n", buffer);
   writeToLogFile(buffer);
 
@@ -381,8 +381,7 @@ void checkNodeName(char *buffer) {
   free(name);
 }
 
-void getNodeName() {
-  nodeString = (char*) malloc(255);
+char *getNodeName() {
   int i;
   for (i = 0; i < nodeno; i++) {
     strcpy(nodeString, nodename[i]);
@@ -391,4 +390,5 @@ void getNodeName() {
       sprintf(nodeString, "%s, ", nodeString);
     }
   }
+  return nodeString;
 }

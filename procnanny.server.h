@@ -11,7 +11,7 @@ void readConfigFile();
 void sighuphandler(int);
 void siginthandler(int);
 void checkNodeName(char *);
-void getNodeName();
+char *getNodeName();
 
 
 
