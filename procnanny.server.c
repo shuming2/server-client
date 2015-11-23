@@ -18,7 +18,7 @@
 
 // shared data
 char *currentTime, *configPath, *configMessage;
-int clients[32] = {0}, numofClient = 0, sock, killcount;
+int clients[32] = {0}, numofClient = 0, sock, killcount, reread = 0;
 
 
 int main(int argc, char *argv[]) {
@@ -29,6 +29,7 @@ int main(int argc, char *argv[]) {
   killPreviousServer();
 
   // initialize pointers;
+  configMessage = (char*) malloc(255);
   currentTime = (char*) malloc(255);
   configPath = (char*) malloc(255);
   strcpy(configPath, argv[1]);
@@ -41,7 +42,7 @@ int main(int argc, char *argv[]) {
   printServerInfo();
 
   // read configuration file
-  configMessage = readConfigFile(configPath);
+  readConfigFile();
 
   // shared memory between parent process and child processes
   killcount = 0;
@@ -53,19 +54,23 @@ int main(int argc, char *argv[]) {
   int	client;
   struct	sockaddr_in from;
   socklen_t fromlength;
-  fd_set fds;
+  fd_set fds, fds_full;
   struct timeval timeout={0,0};
   fromlength = sizeof (from);
   int i, j, maxfd = sock;
 
+  FD_SET(sock, &fds_full);
   // loop of receiving client connection
   for (;;) {
-    FD_ZERO(&fds); //clear it
-    FD_SET(sock, &fds);
-    for (j = 0; j < numofClient; j++) {
-      FD_SET(clients[j], &fds);
+    fds = fds_full;
+    if (reread = 1) {
+      for (j = 0; j < numofClient; j++) {
+        write(clients[j], configMessage, 256);
+      }
+      reread = 0;
     }
-    if (select(maxfd+1, &fds, NULL, NULL, &timeout) == -1) {
+
+    if (select(maxfd + 1, &fds, NULL, NULL, &timeout) == -1) {
       sendError(11);
     }
     for (i = 0; i <= maxfd; i++) {
@@ -79,7 +84,7 @@ int main(int argc, char *argv[]) {
 
         // add client to select watcher
         if (client > maxfd) maxfd = client;
-
+        FD_SET(client, &fds_full);
         // save the client data
         clients[numofClient] = client;
         numofClient++;
@@ -157,8 +162,7 @@ void writeToLogFile(char *message) {
 /**
  * read configurion file
  */
-char *readConfigFile(char *configPath) {
-  char *configMessage = (char*) malloc(255);
+void readConfigFile() {
   char *name = (char*) malloc(255);
   char *runtime = (char*) malloc(255);
   FILE *configfile = fopen(configPath,"r");
@@ -172,7 +176,6 @@ char *readConfigFile(char *configPath) {
   fclose(configfile);
   free(name);
   free(runtime);
-  return configMessage;
 }
 
 
@@ -239,12 +242,8 @@ void sighuphandler(int signum) {
   free(configname);
 
   // re-read configuration file and send messages to clients
-  char *message = readConfigFile(configPath);
-  strcpy(configMessage, message);
-  for (i = 0; i < numofClient; i++) {
-    write(clients[i], configMessage, 256);
-  }
-  free(message);
+  readConfigFile();
+  reread = 1;
 }
 
 /**
@@ -307,15 +306,3 @@ void initializeMasterSocket() {
   // max number of clients connection
   listen (sock, 32);
 }
-
-
-
-
-
-
-
-
-
-
-
-
