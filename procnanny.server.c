@@ -392,7 +392,7 @@ char *getNodeName() {
   for (i = 0; i < nodeno; i++) {
     strcpy(nodeString, nodename[i]);
     free(nodename[i]);
-    if (i != nodeno) {
+    if (i != nodeno - 1) {
       sprintf(nodeString, "%s, ", nodeString);
     }
   }
