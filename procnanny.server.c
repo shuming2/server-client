@@ -333,7 +333,7 @@ void checkNodeName(char *buffer) {
   // get node name from message
   // no process message check
   if ((str = strstr(buffer, "found on")) != NULL) {
-    startpos = (int) (buffer - str + 9);
+    startpos = (int) (str - buffer + 9);
     endpos = (int) strlen(buffer) - 2;
     j = 0;
     for (i = startpos; i <= endpos; i++) {
@@ -344,7 +344,7 @@ void checkNodeName(char *buffer) {
   }
     // initialize message
   else if ((str = strstr(buffer, "on node")) != NULL) {
-    startpos = (int) (buffer - str + 8);
+    startpos = (int) (str - buffer + 8);
     endpos = (int) strlen(buffer) - 2;
     j = 0;
     for (i = startpos; i <= endpos; i++) {
@@ -355,7 +355,7 @@ void checkNodeName(char *buffer) {
   }
     // kill message
   else if ((str = strstr(buffer, " killed after")) != NULL) {
-    endpos = (int) (buffer - str - 1);
+    endpos = (int) (str - buffer - 1);
     for (i = 1; endpos - i > 0; i++) {
       if (buffer[endpos - i] == ' ') {
         startpos = endpos - i + 1;
