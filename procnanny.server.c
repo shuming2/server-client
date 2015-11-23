@@ -211,7 +211,7 @@ void sendError(int error) {
   else if (error == 9) strcpy(errorMessage, "Error: Server: Failure of opening master socket");
   else if (error == 10) strcpy(errorMessage, "Error: Server: Failure of binding master socket");
   else if (error == 11) strcpy(errorMessage, "Error: Server: Failure of selecting");
-  fprintf(stderr,"%s  %s \n", getCurrentTime(), errorMessage);
+  fprintf(stderr,"%s  %s ,errorno = %d from server.\n", getCurrentTime(), errorMessage, error);
   free(errorMessage);
   exit(-1);
 }

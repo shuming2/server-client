@@ -31,21 +31,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="procnanny.server.c" pinned="false" current-in-tab="false">
+      <file leaf-file-name="procnanny.server.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/procnanny.server.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="242" column="33" selection-start-line="242" selection-start-column="33" selection-end-line="242" selection-end-column="33" />
+            <state vertical-scroll-proportion="0.33333334">
+              <caret line="190" column="16" selection-start-line="190" selection-start-column="5" selection-end-line="190" selection-end-column="16" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="procnanny.client.c" pinned="false" current-in-tab="true">
+      <file leaf-file-name="procnanny.client.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/procnanny.client.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5801527">
-              <caret line="137" column="43" selection-start-line="137" selection-start-column="43" selection-end-line="137" selection-end-column="43" />
+            <state vertical-scroll-proportion="-2.7857144">
+              <caret line="127" column="48" selection-start-line="127" selection-start-column="48" selection-end-line="127" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -61,8 +61,8 @@
         <option value="$PROJECT_DIR$/procnanny.server.h" />
         <option value="$PROJECT_DIR$/Makefile" />
         <option value="$PROJECT_DIR$/procnanny.client.h" />
-        <option value="$PROJECT_DIR$/procnanny.server.c" />
         <option value="$PROJECT_DIR$/procnanny.client.c" />
+        <option value="$PROJECT_DIR$/procnanny.server.c" />
       </list>
     </option>
   </component>
@@ -220,17 +220,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/procnanny.client.c</url>
-          <line>128</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/procnanny.client.c</url>
-          <line>135</line>
+          <line>133</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/procnanny.client.c</url>
-          <line>137</line>
+          <line>135</line>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
@@ -405,18 +400,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/procnanny.server.c">
+    <entry file="file://$PROJECT_DIR$/procnanny.client.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="242" column="33" selection-start-line="242" selection-start-column="33" selection-end-line="242" selection-end-column="33" />
+        <state vertical-scroll-proportion="-2.7857144">
+          <caret line="127" column="48" selection-start-line="127" selection-start-column="48" selection-end-line="127" selection-end-column="48" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/procnanny.client.c">
+    <entry file="file://$PROJECT_DIR$/procnanny.server.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5801527">
-          <caret line="137" column="43" selection-start-line="137" selection-start-column="43" selection-end-line="137" selection-end-column="43" />
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="190" column="16" selection-start-line="190" selection-start-column="5" selection-end-line="190" selection-end-column="16" />
           <folding />
         </state>
       </provider>
