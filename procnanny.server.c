@@ -79,8 +79,7 @@ int main(int argc, char *argv[]) {
     }
 
     int value = pselect(maxfd + 1, &fds, NULL, NULL, &timeout, &sigmask);
-
-    if (value == -1 && errno != EINTR) {
+    if (value == -1) {
       printf("system errno = %d\n",errno);
       sendError(11);
     }
@@ -115,7 +114,6 @@ int main(int argc, char *argv[]) {
         writeToLogFile(buffer);
       }
     }
-    sigprocmask(SIG_BLOCK, &origin, NULL);
   }
 }
 
