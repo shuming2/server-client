@@ -101,7 +101,7 @@ int main(int argc, char *argv[]) {
         memset(buffer, 0, 256);
 
         // read the log message
-        read(client, buffer, 256);
+        read(i, buffer, 256);
 
         // check if it is a kill message
         if (strstr(buffer, "after exceeding") != NULL) {

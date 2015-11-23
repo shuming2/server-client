@@ -35,8 +35,8 @@
       <file leaf-file-name="procnanny.server.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/procnanny.server.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4860051">
-              <caret line="62" column="8" selection-start-line="62" selection-start-column="8" selection-end-line="62" selection-end-column="8" />
+            <state vertical-scroll-proportion="0.33333334">
+              <caret line="94" column="14" selection-start-line="94" selection-start-column="8" selection-end-line="94" selection-end-column="14" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -454,8 +454,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/procnanny.server.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4860051">
-          <caret line="62" column="8" selection-start-line="62" selection-start-column="8" selection-end-line="62" selection-end-column="8" />
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="94" column="14" selection-start-line="94" selection-start-column="8" selection-end-line="94" selection-end-column="14" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
