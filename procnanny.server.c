@@ -338,7 +338,9 @@ void checkNodeName(char *buffer) {
     j = 0;
     for (i = startpos; i <= endpos; i++) {
       name[j] = buffer[i];
+      j++;
     }
+    name[j] = 0;
   }
     // initialize message
   else if ((str = strstr(buffer, "on node")) != NULL) {
@@ -347,7 +349,9 @@ void checkNodeName(char *buffer) {
     j = 0;
     for (i = startpos; i <= endpos; i++) {
       name[j] = buffer[i];
+      j++;
     }
+    name[j] = 0;
   }
     // kill message
   else if ((str = strstr(buffer, " killed after")) != NULL) {
@@ -361,7 +365,9 @@ void checkNodeName(char *buffer) {
     j = 0;
     for (i = startpos; i <= endpos; i++) {
       name[j] = buffer[i];
+      j++;
     }
+    name[j] = 0;
   }
 
   // check if the node name is in the node name list
