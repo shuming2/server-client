@@ -32,10 +32,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="procnanny.server.c" pinned="false" current-in-tab="true">
+      <file leaf-file-name="procnanny.server.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/procnanny.server.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7913486">
+            <state vertical-scroll-proportion="-86.10714">
               <caret line="262" column="3" selection-start-line="262" selection-start-column="3" selection-end-line="262" selection-end-column="3" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
@@ -54,11 +54,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="procnanny.client.c" pinned="false" current-in-tab="false">
+      <file leaf-file-name="procnanny.client.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/procnanny.client.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.678571">
-              <caret line="264" column="51" selection-start-line="264" selection-start-column="51" selection-end-line="264" selection-end-column="51" />
+            <state vertical-scroll-proportion="-0.54452926">
+              <caret line="185" column="10" selection-start-line="185" selection-start-column="10" selection-end-line="185" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -74,8 +74,8 @@
         <option value="$PROJECT_DIR$/procnanny.client.h" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/procnanny.server.h" />
-        <option value="$PROJECT_DIR$/procnanny.client.c" />
         <option value="$PROJECT_DIR$/procnanny.server.c" />
+        <option value="$PROJECT_DIR$/procnanny.client.c" />
       </list>
     </option>
   </component>
@@ -444,21 +444,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/procnanny.client.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.678571">
-          <caret line="264" column="51" selection-start-line="264" selection-start-column="51" selection-end-line="264" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/procnanny.server.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7913486">
+        <state vertical-scroll-proportion="-86.10714">
           <caret line="262" column="3" selection-start-line="262" selection-start-column="3" selection-end-line="262" selection-end-column="3" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/procnanny.client.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.54452926">
+          <caret line="185" column="10" selection-start-line="185" selection-start-column="10" selection-end-line="185" selection-end-column="10" />
+          <folding />
         </state>
       </provider>
     </entry>
