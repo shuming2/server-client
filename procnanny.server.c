@@ -61,6 +61,12 @@ int main(int argc, char *argv[]) {
   fromlength = sizeof (from);
   int i, j, maxfd = sock;
 
+  // set up signal mask
+  sigset_t sigmask, origin;
+  sigemptyset(&sigmask);
+  sigaddset(&sigmask, SIGINT);
+  sigaddset(&sigmask, SIGHUP);
+
   FD_SET(sock, &fds_full);
   // loop of receiving client connection
   for (;;) {
@@ -71,6 +77,8 @@ int main(int argc, char *argv[]) {
       }
       reread = 0;
     }
+
+    sigprocmask(SIG_BLOCK, &sigmask, &origin);//block SIGINT
 
     if (select(maxfd + 1, &fds, NULL, NULL, &timeout) == -1) {
       printf("system errno = %d\n",errno);
@@ -107,6 +115,7 @@ int main(int argc, char *argv[]) {
         writeToLogFile(buffer);
       }
     }
+    sigprocmask(SIG_BLOCK, &origin, NULL);
   }
 }
 
