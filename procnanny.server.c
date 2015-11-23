@@ -140,7 +140,7 @@ void printServerInfo() {
   fclose(serverInfoFile);
 
   // print server info into logfile
-  sprintf(output, "%s  procnanny server: PID %d on node %s, port %d\n", getCurrentTime(), pidServer, hostname, MY_PORT);
+  sprintf(output, "%s  procnanny server: PID %d on node %s, port %d", getCurrentTime(), pidServer, hostname, MY_PORT);
   writeToLogFile(output);
 }
 
