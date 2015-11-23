@@ -46,7 +46,6 @@ int main(int argc, char *argv[]) {
 
 
   // create pipes
-  puts("create pipes");
   if (pipe(sendPipe) == -1) sendError(5);
 
   // initialize the socket
@@ -73,6 +72,7 @@ void monitorProcess (int sendPipe[2]) {
     if (no == 0) {
       char *buffer = malloc(255);
       sprintf(buffer, "%s  Info: No '%s' processes found.", getCurrentTime(), records.recordarr[i].name);
+      printf("ready to send message => %s\n",buffer);
       write(sock, buffer, 256);
       free(buffer);
     }
