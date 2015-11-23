@@ -110,7 +110,7 @@ int main(int argc, char *argv[]) {
         read(client, buffer, 256);
 
         // check if it is a kill message
-        if (strstr(buffer, "killed after") != NULL) {
+        if (strstr(buffer, "after exceeding") != NULL) {
           killcount += 1;
         }
 
