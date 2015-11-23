@@ -7,7 +7,7 @@ char *getCurrentTime();
 void writeToLogFile(char *);
 void monitorClient(int);
 void initializeMasterSocket();
-char *readConfigFile(char *);
+void readConfigFile();
 void sighuphandler(int);
 void siginthandler(int);
 
