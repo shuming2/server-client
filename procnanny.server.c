@@ -60,7 +60,7 @@ int main(int argc, char *argv[]) {
   fd_set fds, fds_full;
   struct timespec timeout={0,0};
   fromlength = sizeof (from);
-  int i, j, maxfd = sock;
+  int i, maxfd = sock;
 
   // set up signal mask
   sigset_t sigmask;
