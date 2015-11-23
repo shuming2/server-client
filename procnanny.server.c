@@ -390,5 +390,6 @@ char *getNodeName() {
       sprintf(nodeString, "%s, ", nodeString);
     }
   }
+  nodeString[strlen(nodeString)] = 0;
   return nodeString;
 }
