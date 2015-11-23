@@ -386,8 +386,9 @@ void checkNodeName(char *buffer) {
 
 char *getNodeName() {
   int i;
+  strcpy(nodeString,"");
   for (i = 0; i < nodeno; i++) {
-    strcpy(nodeString, nodename[i]);
+    sprintf(nodeString,"%s%s", nodeString, nodename[i]);
     free(nodename[i]);
     if (i != nodeno - 1) {
       sprintf(nodeString, "%s, ", nodeString);
