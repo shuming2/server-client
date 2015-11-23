@@ -262,7 +262,7 @@ void childExecution(char *pname, int runtime, int pid) {
 
   sleep(runtime);  //sleep time
   if (kill(pid, SIGKILL) == 0) {  //check if process monitored is still alive
-    sprintf(buffer, "%s  Action: PID %d (%s) killed on %s after exceeding %d seconds.", getCurrentTime(), pid, pname, node, runtime);
+    sprintf(buffer, "%s  Action: PID %d (%s) on %s killed after exceeding %d seconds.", getCurrentTime(), pid, pname, node, runtime);
     write(sock, buffer, 256);;
   }
   free(buffer);
