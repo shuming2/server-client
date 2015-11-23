@@ -289,7 +289,8 @@ void siginthandler(int signum) {
 
   // output to shell and logfile
   char *buffer = (char*) malloc(255);
-  sprintf(buffer, "%s  Info: Caught SIGINT. Exiting cleanly. %d process(es) killed on node(s) %s.", getCurrentTime(), killcount, getNodeName());
+  getNodeName();
+  sprintf(buffer, "%s  Info: Caught SIGINT. Exiting cleanly. %d process(es) killed on node(s) %s.", getCurrentTime(), killcount, nodeString);
   fprintf(stderr,"%s\n", buffer);
   writeToLogFile(buffer);
 
