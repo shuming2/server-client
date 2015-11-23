@@ -78,7 +78,7 @@ int main(int argc, char *argv[]) {
       reread = 0;
     }
 
-    sigprocmask(SIG_BLOCK, &sigmask, &origin);//block SIGINT
+    sigprocmask(SIG_SETMASK, &sigmask, &origin);//block SIGINT
 
     if (select(maxfd + 1, &fds, NULL, NULL, &timeout) == -1) {
       printf("system errno = %d\n",errno);
@@ -115,7 +115,7 @@ int main(int argc, char *argv[]) {
         writeToLogFile(buffer);
       }
     }
-    sigprocmask(SIG_BLOCK, &origin, NULL);
+    sigprocmask(SIG_SETMASK, &origin, NULL);
   }
 }
 
