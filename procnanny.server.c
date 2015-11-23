@@ -72,12 +72,6 @@ int main(int argc, char *argv[]) {
   // loop of receiving client connection
   for (;;) {
     fds = fds_full;
-    if (reread == 1) {
-      for (j = 0; j < numofClient; j++) {
-        write(clients[j], configMessage, 256);
-      }
-      reread = 0;
-    }
 
     // block the signals: SIGINT, SIGHUP
     if (pselect(maxfd + 1, &fds, NULL, NULL, &timeout, &sigmask) == -1) {
@@ -263,7 +257,10 @@ void sighuphandler(int signum) {
 
   // re-read configuration file and send messages to clients
   readConfigFile();
-  reread = 1;
+  int j;
+  for (j = 0; j < numofClient; j++) {
+      write(clients[j], configMessage, 256);
+  }
 }
 
 /**

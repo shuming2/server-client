@@ -126,8 +126,8 @@ void receiveMessage() {
 
         read(sock, buffer, 256);
         if (strcmp(buffer, "clearclose") == 0) {
-          clearClose();
           free(buffer);
+          clearClose();
         } else {
           int i;
           for (i = 0; i < records.num; i++) free(records.recordarr[i].name);
@@ -182,6 +182,8 @@ void clearClose() {
 
   // close the connection
   close(sock);
+
+  exit(1);
 }
 
 /**
