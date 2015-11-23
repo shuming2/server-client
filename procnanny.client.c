@@ -126,8 +126,6 @@ void receiveMessage() {
         read(sock, buffer, 256);
         puts(buffer);
         if (strcmp(buffer, "clearclose") == 0) {
-          puts("clearclose");
-
           clearClose();
           free(buffer);
         } else {
