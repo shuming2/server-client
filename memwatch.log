@@ -38,3 +38,54 @@ Memory usage statistics (global):
  L)argest memory usage      : 1276
  T)otal of all alloc() calls: 2552
  U)nfreed bytes totals      : 765
+
+============= MEMWATCH 2.71 Copyright (C) 1992-1999 Johan Lindh =============
+
+Started at Sun Nov 22 21:57:05 2015
+
+Modes: __STDC__ 64-bit mwDWORD==(unsigned int)
+mwROUNDALLOC==8 sizeof(mwData)==56 mwDataSize==56
+
+
+Stopped at Sun Nov 22 21:57:27 2015
+
+
+Memory usage statistics (global):
+ N)umber of allocations made: 22
+ L)argest memory usage      : 35195
+ T)otal of all alloc() calls: 37748
+ U)nfreed bytes totals      : 0
+
+============= MEMWATCH 2.71 Copyright (C) 1992-1999 Johan Lindh =============
+
+Started at Sun Nov 22 21:56:57 2015
+
+Modes: __STDC__ 64-bit mwDWORD==(unsigned int)
+mwROUNDALLOC==8 sizeof(mwData)==56 mwDataSize==56
+
+
+Stopped at Sun Nov 22 21:57:27 2015
+
+
+Memory usage statistics (global):
+ N)umber of allocations made: 22
+ L)argest memory usage      : 35195
+ T)otal of all alloc() calls: 37748
+ U)nfreed bytes totals      : 0
+
+============= MEMWATCH 2.71 Copyright (C) 1992-1999 Johan Lindh =============
+
+Started at Sun Nov 22 21:56:53 2015
+
+Modes: __STDC__ 64-bit mwDWORD==(unsigned int)
+mwROUNDALLOC==8 sizeof(mwData)==56 mwDataSize==56
+
+
+Stopped at Sun Nov 22 21:57:27 2015
+
+
+Memory usage statistics (global):
+ N)umber of allocations made: 44
+ L)argest memory usage      : 2041
+ T)otal of all alloc() calls: 10726
+ U)nfreed bytes totals      : 0

@@ -1,0 +1,21 @@
+1)NAME: SHUMING ZHANG
+2)STUDENT ID: 1401170
+3)UNIX ID: shuming2
+4)LEC SECTION: A1
+5)INSTRUCTOR'S NAME: PAUL LU
+6)LAB SECTION: D03
+7)TA'S NAME: MARCUS KARPOFF
+
+Description:
+  This program monitors processes whose name is in the configuration files 
+and kill them which live beyong an upper real time limit.
+
+Build execution file: 
+$ make
+
+Remove execution file:
+$ make clean
+
+Execute:
+$ ./procnanny.server <PathToConfigFile>
+$ ./procnanny.client <ServerHostname> <PortNumber>

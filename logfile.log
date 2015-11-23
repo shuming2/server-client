@@ -1,2 +1,16 @@
-[Sun Nov 22 16:29:41 MST 2015]  procnanny server: PID 26803 on node ud16, port 9583
-
+[Sun Nov 22 21:56:53 MST 2015]  procnanny server: PID 32367 on node ud16, port 9583
+[Sun Nov 22 21:56:57 MST 2015]  Info: No 'test' processes found on ud16.
+[Sun Nov 22 21:56:57 MST 2015]  Info: No 'a.out' processes found on ud16.
+[Sun Nov 22 21:56:58 MST 2015]  Info: Initializing monitoring of process 'loop' (PID 32366) on node ud16.
+[Sun Nov 22 21:56:58 MST 2015]  Info: Initializing monitoring of process 'loop' (PID 32365) on node ud16.
+[Sun Nov 22 21:57:03 MST 2015]  Action: PID 32366 (loop) on ud16 killed after exceeding 5 seconds.
+[Sun Nov 22 21:57:03 MST 2015]  Action: PID 32365 (loop) on ud16 killed after exceeding 5 seconds.
+[Sun Nov 22 21:57:05 MST 2015]  Info: No 'test' processes found on ud15.
+[Sun Nov 22 21:57:05 MST 2015]  Info: No 'a.out' processes found on ud15.
+[Sun Nov 22 21:57:05 MST 2015]  Info: Initializing monitoring of process 'loop' (PID 5144) on node ud15.
+[Sun Nov 22 21:57:05 MST 2015]  Info: Initializing monitoring of process 'loop' (PID 5143) on node ud15.
+[Sun Nov 22 21:57:05 MST 2015]  Info: Initializing monitoring of process 'loop' (PID 5142) on node ud15.
+[Sun Nov 22 21:57:10 MST 2015]  Action: PID 5144 (loop) on ud15 killed after exceeding 5 seconds.
+[Sun Nov 22 21:57:10 MST 2015]  Action: PID 5143 (loop) on ud15 killed after exceeding 5 seconds.
+[Sun Nov 22 21:57:10 MST 2015]  Action: PID 5142 (loop) on ud15 killed after exceeding 5 seconds.
+[Sun Nov 22 21:57:27 MST 2015]  Info: Caught SIGINT. Exiting cleanly. 5 process(es) killed on node(s) ud16, ud15.
