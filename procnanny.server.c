@@ -57,7 +57,7 @@ int main(int argc, char *argv[]) {
   struct	sockaddr_in from;
   socklen_t fromlength;
   fd_set fds, fds_full;
-  struct timeval timeout={0,0};
+  struct timespec timeout={0,0};
   fromlength = sizeof (from);
   int i, j, maxfd = sock;
 
@@ -78,9 +78,9 @@ int main(int argc, char *argv[]) {
       reread = 0;
     }
 
-    sigprocmask(SIG_SETMASK, &sigmask, &origin);//block SIGINT
+    int value = pselect(maxfd + 1, &fds, NULL, NULL, &timeout, &sigmask);
 
-    if (select(maxfd + 1, &fds, NULL, NULL, &timeout) == -1) {
+    if (value == -1 && errno != EINTR) {
       printf("system errno = %d\n",errno);
       sendError(11);
     }
@@ -115,7 +115,7 @@ int main(int argc, char *argv[]) {
         writeToLogFile(buffer);
       }
     }
-    sigprocmask(SIG_SETMASK, &origin, NULL);
+    sigprocmask(SIG_BLOCK, &origin, NULL);
   }
 }
 
